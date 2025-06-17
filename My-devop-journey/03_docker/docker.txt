@@ -1,0 +1,8 @@
+docker is tool designed to run app or program smoothly through container 
+container is a lightweight virtual machine 
+docker ps
+docker image is buleprint of the image 
+docker build 
+docker run to check is working fine 
+docker --version to check docker version
+
