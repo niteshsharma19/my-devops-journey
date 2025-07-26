@@ -1,0 +1,13 @@
+Wednesday 25/06/25 devops 
+
+DOCKER
+1 DOCKER  
+step 1 login in 
+
+docker rename old file to new file( change docker container nAME)
+docker tag old name to new name (change docker image name)
+docker rmi name (remove docker image)
+docker rm -f (to remove container )
+docker commit old name new name (create image)
+docker push name:tag(to push to dockerhub)
+docker login

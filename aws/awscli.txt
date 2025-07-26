@@ -1,0 +1,2 @@
+download aws cli go to google type aws cli download from show option liux ,macos or window what u are suitable for then download manually 
+or copy the command given below and then run that install it open smd check aws configure go aws site open username click down side u see that security credential click on it scroll down then grnertae acces key and open cmd aws confguire copy paste both aws and secreat acess key 

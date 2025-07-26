@@ -1,0 +1,16 @@
+<<<<<<< HEAD
+hello from the main updated
+=======
+hello from the main branch/branch
+hi from branch dev 
+>>>>>>> dev
+
+
+git push origin --delete branch name
+to delete origin
+git reflog expire --expire=now --all(Run Garbage Collection to Remove Unreachable Commits)
+git gc --prune=now clean
+git fsck --unreachable (to confirm its gone)
+git cheery-pick id (to id to id)
+git reset --hard HEAD
+git reset --soft HEAD

@@ -1,0 +1,305 @@
+**Intermediate Linux Interview Test with Answers (50 Questions)**
+
+---
+
+### Section A: Commands & Concepts (30 Questions)
+
+**1. What does `chmod 755 file.sh` do?**
+Changes the permission of `file.sh` to:
+
+* Owner: Read, write, execute (7)
+* Group: Read, execute (5)
+* Others: Read, execute (5)
+
+**2. What is the difference between `>` and `>>`?**
+
+* `>`: Overwrites the file
+* `>>`: Appends to the file
+
+**3. What command lists open network ports?**
+
+```bash
+ss -tuln
+```
+
+* `-t`: TCP
+* `-u`: UDP
+* `-l`: Listening
+* `-n`: Show numeric ports
+
+**4. How do you display processes in a tree structure?**
+
+```bash
+pstree
+```
+
+Shows the hierarchy of running processes.
+
+**5. What does `df -h` show?**
+Displays disk space usage in human-readable format (`-h`).
+
+**6. Show last 100 lines of a log file continuously:**
+
+```bash
+tail -n 100 -f logfile.log
+```
+
+* `-n`: Number of lines
+* `-f`: Follow new output live
+
+**7. What is `xargs` used for?**
+Builds and executes command lines from standard input.
+
+```bash
+cat list.txt | xargs rm
+```
+
+Deletes files listed in `list.txt`.
+
+**8. What is `nohup`?**
+Runs a command immune to hangups, with output to a file.
+
+```bash
+nohup script.sh &
+```
+
+Keeps running even after logout.
+
+**9. Difference between `su` and `sudo`?**
+
+* `su`: Switch user/shell
+* `sudo`: Execute a command as another user (typically root)
+
+**10. Count `.txt` files in `/home` recursively:**
+
+```bash
+find /home -type f -iname "*.txt" | wc -l
+```
+
+**11. What does `umask 027` do?**
+Sets default permissions: no write for group, no access for others.
+
+**12. Find files modified more than 7 days ago in `/tmp`:**
+
+```bash
+find /tmp -type f -mtime +7
+```
+
+* `-mtime +7`: Modified more than 7 days ago
+
+**13. What does `set -e` do in a bash script?**
+Exits the script immediately if any command exits with a non-zero status.
+
+**14. What is the sticky bit?**
+When set on a directory (like `/tmp`), users can only delete their own files.
+
+```bash
+chmod +t /tmp
+```
+
+**15. Difference between hard and symbolic links?**
+
+* Hard: Points to inode, no file deletion until all links removed.
+* Symbolic: Shortcut (like Windows), breaks if original is deleted.
+
+**16. Remove write permission from group recursively:**
+
+```bash
+chmod -R g-w /var/log/
+```
+
+* `-R`: Recursive
+* `g-w`: Remove write from group
+
+**17. Change ownership of `/opt/myapp` to `deploy:www`:**
+
+```bash
+chown deploy:www /opt/myapp
+```
+
+**18. Give rwx to owner, rx to group, none to others:**
+
+```bash
+chmod 750 filename
+```
+
+**19. Copy only files (not directories) to another dir:**
+
+```bash
+find src/ -maxdepth 1 -type f -exec cp {} dest/ \;
+```
+
+**20. Difference between `/dev/null` and `/dev/zero`?**
+
+* `/dev/null`: Discards input
+* `/dev/zero`: Produces null bytes (0x00)
+
+**21. What does `top` show that `ps` doesn't?**
+Live, real-time view of running processes.
+
+**22. Kill process by name:**
+
+```bash
+pkill processname
+```
+
+**23. Use of `nice` and `renice`?**
+
+* `nice`: Set priority when starting
+* `renice`: Change priority of running process
+
+**24. Cron job for every Monday at 2 a.m.:**
+
+```bash
+0 2 * * 1 /path/to/script.sh
+```
+
+**25. List background jobs in shell:**
+
+```bash
+jobs
+```
+
+**26. Bring background job to foreground:**
+
+```bash
+fg
+```
+
+**27. Check memory usage of specific process:**
+
+```bash
+ps aux --sort=-%mem | head
+```
+
+**28. What is `/etc/fstab`?**
+Config file for static disk mounting rules.
+
+**29. What does `mount` do?**
+Attaches a filesystem to the directory tree. To make permanent, edit `/etc/fstab`.
+
+**30. Top 5 largest folders in `/var`:**
+
+```bash
+du -h /var | sort -hr | head -n 5
+```
+
+---
+
+### Section B: Real-Life Scenarios (20 Questions)
+
+**31. Investigate a crash at night using logs:**
+
+```bash
+tail -n 100 /var/log/syslog
+```
+
+Look for entries with ERROR, CRITICAL, etc.
+
+**32. Monitor CPU and memory over time:**
+Use `top`, `htop`, or `vmstat 1`
+
+**33. Delete `.tmp` files older than 30 days:**
+
+```bash
+find /var/cache -type f -name "*.tmp" -mtime +30 -delete
+```
+
+**34. Cron job not running – steps to debug:**
+
+* Check with `crontab -l`
+* Log: `/var/log/syslog` or `/var/log/cron.log`
+* Permissions & paths
+
+**35. SSH login fails – what to check?**
+
+* `/etc/ssh/sshd_config`
+* User shell, permissions, locked account, key auth
+
+**36. Transfer backup over SSH:**
+
+```bash
+scp backup.tar.gz user@remote:/backup/
+```
+
+**37. Prevent deletion of `/etc` folder by root:**
+
+* Alias `rm` with interactive flag: `alias rm='rm -i'`
+* Use `chattr +i` (immutable): `chattr +i /etc`
+
+**38. Fix script with removed write access:**
+
+```bash
+chmod +w script.sh
+```
+
+**39. Check who ran a dangerous command:**
+
+* Check `~/.bash_history`
+* Audit logs `/var/log/auth.log` or `ausearch`
+
+**40. Rogue script causes high load – stop it:**
+
+```bash
+top
+kill <PID>
+```
+
+Use `ps aux --sort=-%cpu` to find it
+
+**41. Block an IP using `ufw`:**
+
+```bash
+ufw deny from 192.168.1.100
+```
+
+**42. Find user using most disk space:**
+
+```bash
+du -sh /home/* | sort -hr | head
+```
+
+**43. Tar `/var/log` excluding `.gz` files:**
+
+```bash
+tar --exclude='*.gz' -czf logs.tar.gz /var/log
+```
+
+**44. Detect reboot without logs:**
+Check `uptime`, `who -b`, BIOS logs, `last reboot`
+
+**45. Save real-time logs to separate file:**
+
+```bash
+tail -f logfile.log > error_copy.log
+```
+
+**46. `scp` vs `rsync` vs `sftp`:**
+
+* `scp`: Simple, one-time copy
+* `rsync`: Syncs files, faster after first time
+* `sftp`: Interactive file transfer
+
+**47. Backup script weekly with log:**
+Add to crontab:
+
+```bash
+0 3 * * 0 /scripts/backup.sh >> /var/log/backup.log 2>&1
+```
+
+**48. Add a new disk and mount it:**
+
+* `fdisk /dev/sdX`
+* `mkfs.ext4 /dev/sdX1`
+* `mount /dev/sdX1 /mnt/data`
+* Add to `/etc/fstab`
+
+**49. What is `/etc/shadow`?**
+Contains password hashes. Secured with `chmod 000` and owned by root.
+
+**50. Reset forgotten root password (physical access):**
+
+* Boot into recovery or single-user mode
+* Mount root as RW
+* Use `passwd root`
+

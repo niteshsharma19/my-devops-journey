@@ -1,0 +1,42 @@
+docker is tool designed to run app or program smoothly through container 
+container is a lightweight virtual machine 
+
+docker takes only 1s to  run an os.
+it is used handle overload on server to manage it or transfer traffic from it docker os so it can run smoothly 
+
+docker pull ubuntu(it downloads the Ubuntu image from Docker Hub)
+
+docker run -it ubuntu bash(it runs the Ubuntu container in terminal interactively with bash)
+
+docker -it --name dev ubuntu bash(it is used to run and assign a name to the Ubuntu container as "dev")
+
+docker ps(it shows all the currently running containers)
+
+docker ps -a(it shows all containers including stopped/exited ones)
+
+docker start id or name(it starts a particular stopped container)
+
+docker attach id or name(it attaches your terminal to a running container)
+
+docker start -ai id or name(it starts and attaches to a container directly in one command)
+
+docker rm id or name(it removes/terminates a container)
+
+docker image ls(it shows list of all image)
+
+apt install net-tools -y(it used to install nettools to see ip)
+apt remove net-tools(t used to uninstall nettools )
+
+docker container run -it --name rajjo ubuntu bash (to create a container an assigned name rajjo)
+docker commit rajjo dev:u1 (to create a image)
+ docker run -it --name z3 --rm ubuntu date (it is used to create os and run the task then terminate the os) 
+docker run -it --name rat --rm dev:u1 ifconfig (run a os with image and perform task and then kill it)
+
+
+docker image is a blueprint of the container(images are read-only templates used to create containers)
+docker build -t name .(it builds a Docker image from a Dockerfile in the current directory)
+docker run -it name(it runs a container from a custom image and checks if it's working fine)
+docker --version(it checks the installed Docker version)
+
+
+
