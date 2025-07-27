@@ -1,6 +1,0 @@
-<<<<<<< HEAD
-hello from the main updated
-=======
-hello from the main branch/branch
-hi from branch dev 
->>>>>>> dev
