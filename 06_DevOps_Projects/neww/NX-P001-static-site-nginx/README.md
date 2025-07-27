@@ -30,7 +30,6 @@ docker build -t nginx:s1 .
 docker run -d -p 8080:80 --name os1 nginx:s1 .
 '''
 
-## Access the Website
-open your browser and visit: http://localhost:8080
+## Acess to the Webiste
 
- 
+open your browser and visit: https://localhost:8080: 
