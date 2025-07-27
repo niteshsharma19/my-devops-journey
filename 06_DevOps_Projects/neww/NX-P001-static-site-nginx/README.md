@@ -6,30 +6,24 @@ This project is a basic example of serving a static website using the nginx web 
 
 ## features 
 
-<pre><code>
- 
+
+
 ## Project Structure
+ <pre><code>
+  
+├── Dockerfile
+└── web/
+    ├── index.html
+    └── style.css
 
-'''
-.
-|--- Dockerfile
-|--- web/
-|      |__ index.html
-|      |__ style.css
-'''
-
+</code></pre>
 ## Build Docker Images 
-
-'''bash
-docker build -t nginx:s1 .
-'''
-
+ <pre><code>
+docker build -t linux19/nginx:s1 .
+</code></pre>
 ## To run a Docker container
-
-'''bash
-docker run -d -p 8080:80 --name os1 nginx:s1 .
-'''
-
+ <pre><code>
+docker run -d -p 8080:80 --name os1 linux19/nginx:s1 .
+</code></pre>
 ## Acess to the Webiste
-
 open your browser and visit: https://localhost:8080: 
